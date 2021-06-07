@@ -94,11 +94,11 @@ public class RingObject {
         if (valueAnimator != null) {
             boolean started = valueAnimator.isStarted();
             if (!started) {
-                valueAnimator.start();
                 bili = 0;
                 paint.setAlpha(255);
                 currentAngle = 0;
                 currentRingRandomAngle = getCurrentRandomAngle();
+                valueAnimator.start();
             }
         }
 
@@ -107,5 +107,10 @@ public class RingObject {
     public Path getPath() {
 
         return pathTest;
+    }
+    public void detch(){
+        if (valueAnimator!=null){
+            valueAnimator.cancel();
+        }
     }
 }

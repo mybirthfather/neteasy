@@ -115,24 +115,6 @@ public class PlayerView extends View {
         valueAnimatorMAXRADIUSRING.setDuration(1200);
         ringObject = new RingObject(RING_RADIUS, CENTERY, this, path, CENTERX, MAXRADIUSRING, RADIUS_SMALLCIRCLE);
         ringObject1 = new RingObject(RING_RADIUS, CENTERY, this, path, CENTERX, MAXRADIUSRING, RADIUS_SMALLCIRCLE);
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-//                flag+=1;
-//                if (flag==1){
-//                    ringObject1.startAnimation();
-//                    flag=0;
-//                }else {
-//                    ringObject.startAnimation();
-//                    flag=1;
-//                }
-                handler.postDelayed(this, 600);
-
-
-            }
-        }, 600);
-
-
     }
 
     private int flag = 0;
@@ -160,7 +142,7 @@ public class PlayerView extends View {
                     matrix.preTranslate(screenWidth / 2 - roundBitmap.getWidth() / 2, screenHeight / 2 - roundBitmap.getHeight() / 2);
                     matrix.setRotate(animatedValue, roundBitmap.getWidth() / 2, roundBitmap.getHeight() / 2);
                     matrix.postTranslate(screenWidth / 2 - roundBitmap.getWidth() / 2, screenHeight / 2 - roundBitmap.getHeight() / 2);
-                    canvas.rotate(-animatedValue);//这个只负责旋转
+//                    canvas.rotate(-animatedValue);//这个只负责旋转
                     invalidate();
                 }
             });
@@ -185,7 +167,6 @@ public class PlayerView extends View {
         //        canvas.drawPath(path, smallPaint);
     }
 
-    private final Handler handler = new Handler();
 
 
     public Bitmap toRoundBitmap(Bitmap bitmap) {
@@ -216,4 +197,10 @@ public class PlayerView extends View {
         return bm;
     }
 
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        ringObject.detch();
+        ringObject1.detch();
+    }
 }
